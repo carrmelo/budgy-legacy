@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import TableList from './components/TableList';
-import AppHeader from './navigation/AppHeader';
 
-export default class App extends Component {
+export default class TableList extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <AppHeader />
-        <TableList />
-        <View>
-          <Text>Total</Text>
-        </View>
+      <View>
+        <Text>I'm gonna be a table</Text>
       </View>
     );
   }
