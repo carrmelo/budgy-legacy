@@ -22,10 +22,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#40b34f',
     width: '100%',
-    height: 70
+    height: 90,
+    paddingTop: 15
   },
   title: {
     fontSize: 45,
+    fontWeight: 'bold',
     color: '#FFF'
   },
   logo: {
