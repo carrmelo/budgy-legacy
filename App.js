@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import TableList from './screen/TableList';
 import AppHeader from './navigation/AppHeader';
+import AppNavigator from './navigation/AppNavigator';
+import InputChange from './screen/InputCharge';
 
 export default class App extends Component {
   render() {
@@ -9,7 +11,8 @@ export default class App extends Component {
       <View style={styles.container}>
         <AppHeader />
         <TableList />
-        <AppHeader />
+        <InputChange />
+        <AppNavigator />
       </View>
     );
   }

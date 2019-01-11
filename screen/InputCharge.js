@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 
 export default class InputChange extends Component {
+  state = {
+    payment: '',
+    company: '',
+    amount: 0
+  };
+
   render() {
     return (
       <View style={styles.container}>
-        <View style={{ flex: 1, backgroundColor: 'white' }} />
-        <View style={{ flex: 9 }}>
-          <Text>I'm gonna be a table</Text>
-        </View>
-        <Text style={{ flex: 1 }}>Total</Text>
+        <TextInput style={{ height: 40 }} placeholder="payment" />
+        <TextInput style={{ height: 40 }} placeholder="collector" />
+        <TextInput
+          style={{ height: 40 }}
+          keyboardType="numeric"
+          placeholder="amount"
+        />
       </View>
     );
   }

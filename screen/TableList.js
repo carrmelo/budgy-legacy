@@ -6,23 +6,7 @@ export default class TableList extends Component {
     return (
       <View style={styles.container}>
         <View style={{ flex: 1, backgroundColor: 'white' }} />
-        <View style={{ flex: 9 }}>
-          <Text>I'm gonna be a table</Text>
-          <Text>I'm gonna be a table</Text>
-          <Text>I'm gonna be a table</Text>
-          <Text>I'm gonna be a table</Text>
-          <Text>I'm gonna be a table</Text>
-          <Text>I'm gonna be a table</Text>
-          <Text>I'm gonna be a table</Text>
-          <Text>I'm gonna be a table</Text>
-          <Text>I'm gonna be a table</Text>
-          <Text>I'm gonna be a table</Text>
-          <Text>I'm gonna be a table</Text>
-          <Text>I'm gonna be a table</Text>
-          <Text>I'm gonna be a table</Text>
-          <Text>I'm gonna be a table</Text>
-          <Text>I'm gonna be a table</Text>
-          <Text>I'm gonna be a table</Text>
+        <View style={{ flex: 2 }}>
           <Text>I'm gonna be a table</Text>
         </View>
         <Text style={{ flex: 1 }}>Total</Text>
