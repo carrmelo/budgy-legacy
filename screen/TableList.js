@@ -9,7 +9,7 @@ export default class TableList extends Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <ScrollView style={styles.content}>
+        <ScrollView style={styles.content} maximumZoomScale="10">
           {Array(10)
             .fill(test)
             .map((test, i) => (
