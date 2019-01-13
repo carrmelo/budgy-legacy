@@ -1,26 +1,34 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View, ScrollView } from 'react-native';
+
+const test = (
+  <Text onPress={() => Alert.alert('Pressed')}>I'm gonna be a table</Text>
+);
 
 export default class TableList extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <View style={{ flex: 1, backgroundColor: 'white' }} />
-        <View style={{ flex: 2 }}>
-          <Text>I'm gonna be a table</Text>
-        </View>
+      <ScrollView style={styles.container}>
+        <ScrollView style={styles.content}>
+          {Array(10)
+            .fill(test)
+            .map((test, i) => (
+              <View key={i}>{test}</View>
+            ))}
+        </ScrollView>
         <Text style={{ flex: 1 }}>Total</Text>
-      </View>
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 3,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'space-between',
     textAlign: 'center'
+  },
+  content: {
+    flex: 10
   }
 });
