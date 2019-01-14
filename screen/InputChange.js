@@ -1,5 +1,30 @@
 import React, { Component } from 'react';
-import { Alert, StyleSheet, TextInput, View, Button } from 'react-native';
+import {
+  Alert,
+  StyleSheet,
+  TextInput,
+  View,
+  KeyboardAvoidingView,
+  Button,
+  FlatList,
+  Text,
+} from 'react-native';
+import formatAmount from '../lib/formatAmount';
+
+const months = [
+  'January',
+  'February',
+  ' March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
 
 export default class InputChange extends Component {
   state = {
@@ -19,7 +44,7 @@ export default class InputChange extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding">
         <TextInput
           style={{ height: 40 }}
           value={this.state.payment}
@@ -34,18 +59,20 @@ export default class InputChange extends Component {
           onChangeText={text => this.handleChange(text, 'collector')}
         />
         <TextInput
-          style={{ height: 40 }}
+          style={{ height: 40, width: 100, textAlign: 'center' }}
           keyboardType="numeric"
-          value={this.state.amount}
+          returnKeyType="done"
+          value={this.state.amount ? formatAmount(this.state.amount) : ''}
           placeholder="amount"
           onChangeText={text => this.handleChange(text, 'amount')}
         />
+
         <Button
           onPress={() => Alert.alert('Salvado')}
           color="#40b34f"
           title="Save"
         />
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }

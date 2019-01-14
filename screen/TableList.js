@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Alert, StyleSheet, Text, View, ScrollView } from 'react-native';
-import formatAmount from '../lib/formatAmount';
+import ModalPayment from '../components/ModalPayment';
 
 export default class TableList extends Component {
   state = {
@@ -20,7 +20,10 @@ export default class TableList extends Component {
   componentDidUpdate() {
     console.log('hola', this.state);
   }
-  calculateTotal() {}
+
+  // calculateTotal() {
+  //   const total = payments.
+  // }
 
   render() {
     const { payments } = this.state;
@@ -29,11 +32,11 @@ export default class TableList extends Component {
       <ScrollView style={styles.container}>
         <ScrollView style={styles.content} maximumZoomScale="10">
           {payments.map(payment => (
-            <View style={styles.payment} key={payment._id}>
-              <Text>{payment.name}</Text>
-              <Text>{payment.collector}</Text>
-              <Text>{formatAmount(payment.amount)}</Text>
-            </View>
+            <ModalPayment
+              style={styles.payment}
+              key={payment._id}
+              payment={payment}
+            />
           ))}
         </ScrollView>
         <Text style={{ flex: 1 }}>Total</Text>
