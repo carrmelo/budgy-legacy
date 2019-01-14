@@ -5,7 +5,7 @@ export default class InputChange extends Component {
   state = {
     payment: '',
     collector: '',
-    amount: ''
+    amount: '',
   };
 
   handleChange = (text, name) => {
@@ -56,6 +56,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'space-between',
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 });

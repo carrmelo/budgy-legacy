@@ -6,6 +6,25 @@ const test = (
 );
 
 export default class TableList extends Component {
+  state = {
+    payments: [],
+    total: 0,
+    remainingDays: 0,
+    perDay: 0,
+  };
+
+  componentDidMount() {
+    fetch('http://192.168.0.156:3000/payments')
+      .then(response => response.json())
+      .then(data => console.log(data) || this.setState({ payments: [...data] }))
+      .catch(error => console.log(error));
+    console.log(this.state);
+  }
+
+  componentDidUpdate() {
+    console.log('hola', this.state);
+  }
+
   render() {
     return (
       <ScrollView style={styles.container}>
@@ -26,9 +45,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 3,
     backgroundColor: '#fff',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   content: {
-    flex: 10
-  }
+    flex: 10,
+  },
 });
