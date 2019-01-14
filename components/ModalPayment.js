@@ -12,6 +12,7 @@ export default class ModalPayment extends Component {
   }
 
   render() {
+    const { name, collector, amount } = this.props.payment;
     return (
       <View style={{ marginTop: 22 }}>
         <Modal
@@ -25,15 +26,16 @@ export default class ModalPayment extends Component {
           <View style={{ marginTop: 22 }}>
             <View>
               <TouchableHighlight
+                style={{ alignItems: 'flex-end' }}
                 onPress={() => {
                   this.setModalVisible(!this.state.modalVisible);
                 }}
               >
                 <Text>❌</Text>
               </TouchableHighlight>
-              <Text>{this.props.payment.name}</Text>
-              <Text>{this.props.payment.collector}</Text>
-              <Text>{this.props.payment.amount}</Text>
+              <Text>{name}</Text>
+              <Text>{collector}</Text>
+              <Text>{formatAmount(amount)}</Text>
             </View>
           </View>
         </Modal>
@@ -44,8 +46,8 @@ export default class ModalPayment extends Component {
           }}
         >
           <View style={{ flexDirection: 'row' }}>
-            <Text>{this.props.payment.name} </Text>
-            <Text> {formatAmount(this.props.payment.amount)}</Text>
+            <Text>{name} </Text>
+            <Text> {formatAmount(amount)}</Text>
           </View>
         </TouchableHighlight>
       </View>
