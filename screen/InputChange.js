@@ -33,7 +33,7 @@ export default class InputChange extends Component {
     payment: '',
     collector: '',
     amount: '',
-    months: [],
+    months: new Set(),
   };
 
   handleChange = (text, name) => {
@@ -43,6 +43,20 @@ export default class InputChange extends Component {
     }
     this.setState({ [name]: text });
     console.log(this.state);
+  };
+
+  componentDidUpdate() {
+    console.log(this.state);
+  }
+
+  select = i => {
+    this.setState(({ months }) => {
+      if (months.has(i)) {
+        const newMonths = new Set(months);
+        newMonths.delete(i);
+        return { months: newMonths };
+      } else return { months: new Set(months.add(i)) };
+    });
   };
 
   render() {
@@ -96,7 +110,9 @@ export default class InputChange extends Component {
                 onPress={() => this.select(i)}
                 underlayColor="#40b34f"
               >
-                <Text style={{ color: '#fff' }}>{month}</Text>
+                <View borderStyle="solid" borderColor="red" borderWidth="5">
+                  <Text style={{ color: '#fff' }}>{month}</Text>
+                </View>
               </TouchableHighlight>
             ))}
           </View>
