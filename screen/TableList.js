@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Alert, StyleSheet, Text, View, ScrollView } from 'react-native';
 import ModalPayment from '../components/ModalPayment';
+import formatAmount from '../lib/formatAmount';
 
 export default class TableList extends Component {
   state = {
@@ -17,13 +18,15 @@ export default class TableList extends Component {
       .catch(error => console.log(error));
   }
 
-  componentDidUpdate() {
-    console.log('hola', this.state);
-  }
-
-  // calculateTotal() {
-  //   const total = payments.
+  // componentDidUpdate() {
+  //   console.log('hola', this.state);
   // }
+
+  calculateTotal(payments) {
+    return formatAmount(
+      payments.reduce((acc, payment) => payment.amount + acc, 0),
+    );
+  }
 
   render() {
     const { payments } = this.state;
@@ -39,7 +42,7 @@ export default class TableList extends Component {
             />
           ))}
         </ScrollView>
-        <Text style={{ flex: 1 }}>Total</Text>
+        <Text style={{ flex: 1 }}>Total {this.calculateTotal(payments)}</Text>
       </ScrollView>
     );
   }

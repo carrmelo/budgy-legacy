@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Text, TouchableHighlight, View, Alert } from 'react-native';
 import formatAmount from '../lib/formatAmount';
-
+import { months as monthNames } from '../lib/months';
 export default class ModalPayment extends Component {
   state = {
     modalVisible: false,
@@ -12,7 +12,7 @@ export default class ModalPayment extends Component {
   }
 
   render() {
-    const { name, collector, amount } = this.props.payment;
+    const { name, collector, amount, months } = this.props.payment;
     return (
       <View style={{ marginTop: 22 }}>
         <Modal
@@ -36,6 +36,15 @@ export default class ModalPayment extends Component {
               <Text>{name}</Text>
               <Text>{collector}</Text>
               <Text>{formatAmount(amount)}</Text>
+              {months.reduce((acc, month) => {
+                return acc ? (
+                  <Text>
+                    {acc},{monthNames[month].substring(0, 3)}
+                  </Text>
+                ) : (
+                  <Text>{monthNames[month].substring(0, 3)}</Text>
+                );
+              }, '')}
             </View>
           </View>
         </Modal>

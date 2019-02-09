@@ -12,21 +12,7 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import formatAmount from '../lib/formatAmount';
-
-const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
+import { months } from '../lib/months';
 
 export default class InputChange extends Component {
   state = {
@@ -42,12 +28,11 @@ export default class InputChange extends Component {
       text = text.replace(/[^0-9]/g, '');
     }
     this.setState({ [name]: text });
-    console.log(this.state);
   };
 
-  componentDidUpdate() {
-    console.log('holh', this.state);
-  }
+  // componentDidUpdate() {
+  //   console.log('holh', this.state);
+  // }
 
   select = i => {
     this.setState(({ months }) => {
@@ -61,19 +46,16 @@ export default class InputChange extends Component {
 
   handleSubmit = () => {
     const { name, collector, amount, months } = this.state;
-    let body = {
+    const body = {
       name,
       collector,
       amount: +amount,
-      months: Array.from(months),
+      months: Array.from(months).sort((a, b) => (a > b ? 1 : -1)),
     };
-    console.log(body);
-    body = JSON.stringify(body);
-    console.log(body);
 
     fetch('http://192.168.0.156:3000/payments', {
       method: 'POST',
-      body,
+      body: JSON.stringify(body),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -137,7 +119,7 @@ export default class InputChange extends Component {
                 underlayColor="#40b34f"
               >
                 <View borderStyle="solid" borderColor="red" borderWidth="5">
-                  <Text style={{ color: '#fff' }}>{month}</Text>
+                  <Text style={{ color: '#fff' }}>{month.substring(0, 3)}</Text>
                 </View>
               </TouchableHighlight>
             ))}
