@@ -24,7 +24,7 @@ export default class ModalPayment extends Component {
           }}
         >
           <View style={{ marginTop: 22 }}>
-            <View>
+            <View style={{ padding: 20 }}>
               <TouchableHighlight
                 style={{ alignItems: 'flex-end' }}
                 onPress={() => {

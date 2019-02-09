@@ -16,7 +16,7 @@ import formatAmount from '../lib/formatAmount';
 const months = [
   'January',
   'February',
-  ' March',
+  'March',
   'April',
   'May',
   'June',
@@ -30,7 +30,7 @@ const months = [
 
 export default class InputChange extends Component {
   state = {
-    payment: '',
+    name: '',
     collector: '',
     amount: '',
     months: new Set(),
@@ -46,7 +46,7 @@ export default class InputChange extends Component {
   };
 
   componentDidUpdate() {
-    console.log(this.state);
+    console.log('holh', this.state);
   }
 
   select = i => {
@@ -59,6 +59,31 @@ export default class InputChange extends Component {
     });
   };
 
+  handleSubmit = () => {
+    const { name, collector, amount, months } = this.state;
+    let body = {
+      name,
+      collector,
+      amount: +amount,
+      months: Array.from(months),
+    };
+    console.log(body);
+    body = JSON.stringify(body);
+    console.log(body);
+
+    fetch('http://192.168.0.156:3000/payments', {
+      method: 'POST',
+      body,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => console.log(response))
+      // .then(data => this.setState({ payments: [...data] }))
+      .catch(error => console.log(error));
+  };
+
   render() {
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding">
@@ -68,11 +93,12 @@ export default class InputChange extends Component {
             alignItems: 'center',
           }}
         >
+          <Button onPress={this.handleSubmit} color="#40b34f" title="Save" />
           <TextInput
             style={{ height: 40, width: 100, textAlign: 'center' }}
-            value={this.state.payment}
-            placeholder="payment"
-            onChangeText={text => this.handleChange(text, 'payment')}
+            value={this.state.name}
+            placeholder="name"
+            onChangeText={text => this.handleChange(text, 'name')}
             onSubmitEditing={() => console.log(this.state)}
           />
           <TextInput
@@ -116,11 +142,6 @@ export default class InputChange extends Component {
               </TouchableHighlight>
             ))}
           </View>
-          <Button
-            onPress={() => Alert.alert('Salvado')}
-            color="#40b34f"
-            title="Save"
-          />
         </ScrollView>
       </KeyboardAvoidingView>
     );
