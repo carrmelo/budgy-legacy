@@ -11,7 +11,7 @@ import {
   ScrollView,
   TouchableHighlight,
 } from 'react-native';
-import { months } from '../lib/months';
+import { months as monthNames } from '../lib/months';
 import formatNumberInput from '../lib/formatNumberInput';
 
 export default class AddPaymentScreen extends Component {
@@ -34,11 +34,7 @@ export default class AddPaymentScreen extends Component {
     this.setState({ [name]: text });
   };
 
-  // componentDidUpdate() {
-  //   console.log('holh', this.state);
-  // }
-
-  select = i => {
+  selectOne = i => {
     this.setState(({ months }) => {
       if (months.has(i)) {
         const newMonths = new Set(months);
@@ -47,6 +43,22 @@ export default class AddPaymentScreen extends Component {
       } else return { months: new Set(months.add(i)) };
     });
   };
+
+  selectAll = () => {
+    this.setState(({ months }) => {
+      return this.state.months.size === 12
+        ? { months: new Set() }
+        : { months: new Set(monthNames.map((month, i) => i)) };
+    });
+  };
+
+  // if (checked) {
+  //   return { favorites: new Set(favorites.add(item)) };
+  // } else {
+  //   const newFavorites = new Set(favorites);
+  //   newFavorites.delete(item);
+  //   return { favorites: newFavorites };
+  // }
 
   handleSubmit = () => {
     const { name, collector, amount, months } = this.state;
@@ -65,7 +77,7 @@ export default class AddPaymentScreen extends Component {
         'Content-Type': 'application/json',
       },
     })
-      .then(response => console.log(response))
+      .then(response => Alert.alert(response._bodyText))
       .then(() => {
         this.setState({
           name: '',
@@ -113,6 +125,21 @@ export default class AddPaymentScreen extends Component {
             />
             <Text>€</Text>
           </View>
+          <TouchableHighlight
+            style={{
+              width: '30%',
+              height: 30,
+              backgroundColor:
+                this.state.months.size === 12 ? '#87f294' : '#87a094',
+              margin: 5,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            onPress={() => this.selectAll()}
+            underlayColor="#40b34f"
+          >
+            <Text style={{ color: '#fff' }}>Every Month</Text>
+          </TouchableHighlight>
           <View
             style={{
               flexDirection: 'row',
@@ -120,7 +147,7 @@ export default class AddPaymentScreen extends Component {
               justifyContent: 'center',
             }}
           >
-            {months.map((month, i) => (
+            {monthNames.map((month, i) => (
               <TouchableHighlight
                 key={i}
                 style={{
@@ -133,7 +160,7 @@ export default class AddPaymentScreen extends Component {
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
-                onPress={() => this.select(i)}
+                onPress={() => this.selectOne(i)}
                 underlayColor="#40b34f"
               >
                 <View>

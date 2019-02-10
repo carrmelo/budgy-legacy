@@ -9,7 +9,7 @@ const PaymentsNavigator = createStackNavigator(
     Add: AddPaymentScreen,
   },
   {
-    initialRouteName: 'Add',
+    initialRouteName: 'List',
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: '#40b34f',
