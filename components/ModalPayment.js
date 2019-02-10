@@ -38,9 +38,9 @@ export default class ModalPayment extends Component {
               <Text>{formatAmount(amount)}</Text>
               <Text>
                 {months.reduce((acc, month, i, arr) => {
-                  if (!acc) return monthNames[month].substring(0, 3);
+                  if (!acc) return monthNames[month].name.substring(0, 3);
                   if (+arr[i - 1] + 1 !== +arr[i])
-                    return `${acc}, ${monthNames[month].substring(0, 3)}`;
+                    return `${acc}, ${monthNames[month].name.substring(0, 3)}`;
                   if (
                     +arr[i - 1] === +arr[i] - 1 &&
                     +arr[i] === +arr[i + 1] - 1
@@ -50,7 +50,7 @@ export default class ModalPayment extends Component {
                     !arr[i + 1] ||
                     (+arr[i - 1] === +arr[i] - 1 && +arr[i] !== +arr[i + 1] - 1)
                   )
-                    return `${acc} - ${monthNames[month].substring(0, 3)}`;
+                    return `${acc} - ${monthNames[month].name.substring(0, 3)}`;
                 }, '')}
               </Text>
             </View>

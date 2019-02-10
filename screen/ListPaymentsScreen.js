@@ -6,11 +6,17 @@ import {
   View,
   ScrollView,
   Button,
+  StatusBar,
 } from 'react-native';
 import ModalPayment from '../components/ModalPayment';
 import formatAmount from '../lib/formatAmount';
+import LogoBudgy from '../navigation/LogoBudgy';
 
 export default class ListPaymentsScreen extends Component {
+  static navigationOptions = {
+    headerTitle: <LogoBudgy />,
+  };
+
   state = {
     payments: [],
     total: 0,
@@ -40,6 +46,7 @@ export default class ListPaymentsScreen extends Component {
     console.log('In', !payments.length === false);
     return (
       <ScrollView style={styles.container}>
+        <StatusBar barStyle="light-content" />
         <ScrollView style={styles.content} maximumZoomScale="10">
           {payments.map(payment => (
             <ModalPayment

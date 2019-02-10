@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import ListPaymentsScreen from './screen/ListPaymentsScreen';
-import AppHeader from './navigation/AppHeader';
 import AppContainer from './navigation/AppNavigator';
 import AddPaymentScreen from './screen/AddPaymentScreen';
 
@@ -19,9 +18,3 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 });
-
-// {/* <View style={styles.container}> */}
-//   <AppHeader />
-//   <ListPaymentsScreen />
-//   <AddPaymentScreen />
-// {/* </View> */}

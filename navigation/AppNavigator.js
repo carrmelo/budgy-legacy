@@ -8,7 +8,19 @@ const PaymentsNavigator = createStackNavigator(
     List: ListPaymentsScreen,
     Add: AddPaymentScreen,
   },
-  { initialRouteName: 'List' },
+  {
+    initialRouteName: 'List',
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: '#40b34f',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+      },
+    },
+  },
 );
 
 const AppContainer = createAppContainer(PaymentsNavigator);

@@ -15,6 +15,10 @@ import { months } from '../lib/months';
 import formatNumberInput from '../lib/formatNumberInput';
 
 export default class AddPaymentScreen extends Component {
+  static navigationOptions = {
+    title: 'New Payment',
+  };
+
   state = {
     name: '',
     collector: '',
@@ -128,7 +132,9 @@ export default class AddPaymentScreen extends Component {
                 underlayColor="#40b34f"
               >
                 <View borderStyle="solid" borderColor="red" borderWidth="5">
-                  <Text style={{ color: '#fff' }}>{month.substring(0, 3)}</Text>
+                  <Text style={{ color: '#fff' }}>
+                    {month.name.substring(0, 3)}
+                  </Text>
                 </View>
               </TouchableHighlight>
             ))}
