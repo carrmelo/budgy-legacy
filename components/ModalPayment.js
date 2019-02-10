@@ -36,15 +36,23 @@ export default class ModalPayment extends Component {
               <Text>{name}</Text>
               <Text>{collector}</Text>
               <Text>{formatAmount(amount)}</Text>
-              {months.reduce((acc, month) => {
-                return acc ? (
-                  <Text>
-                    {acc},{monthNames[month].substring(0, 3)}
-                  </Text>
-                ) : (
-                  <Text>{monthNames[month].substring(0, 3)}</Text>
-                );
-              }, '')}
+              <Text>
+                {months.reduce((acc, month, i, arr) => {
+                  if (!acc) return monthNames[month].substring(0, 3);
+                  if (+arr[i - 1] + 1 !== +arr[i])
+                    return `${acc}, ${monthNames[month].substring(0, 3)}`;
+                  if (
+                    +arr[i - 1] === +arr[i] - 1 &&
+                    +arr[i] === +arr[i + 1] - 1
+                  )
+                    return acc;
+                  if (
+                    !arr[i + 1] ||
+                    (+arr[i - 1] === +arr[i] - 1 && +arr[i] !== +arr[i + 1] - 1)
+                  )
+                    return `${acc} - ${monthNames[month].substring(0, 3)}`;
+                }, '')}
+              </Text>
             </View>
           </View>
         </Modal>
