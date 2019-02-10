@@ -1,37 +1,16 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
+import ListPaymentsScreen from '../screen/ListPaymentsScreen';
+import AddPaymentScreen from '../screen/AddPaymentScreen';
 
-export default class AppHeader extends Component {
-  render() {
-    let pic = {
-      uri:
-        'https://vignette.wikia.nocookie.net/videojuego/images/6/63/Dinero.png/revision/latest?cb=20151022150411&format=original'
-    };
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Budgy!</Text>
-        <Image source={pic} style={styles.logo} />
-      </View>
-    );
-  }
-}
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#40b34f',
-    width: '100%',
-    height: 90,
-    paddingTop: 15
+const PaymentsNavigator = createStackNavigator(
+  {
+    List: { screen: ListPaymentsScreen },
+    Add: { screen: AddPaymentScreen },
   },
-  title: {
-    fontSize: 45,
-    fontWeight: 'bold',
-    color: '#FFF'
-  },
-  logo: {
-    width: 60,
-    height: 60
-  }
-});
+  { initialRouteName: 'Add' },
+);
+
+const AppNavigator = createAppContainer(PaymentsNavigator);
+
+export default AppNavigator;

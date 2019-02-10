@@ -14,7 +14,7 @@ import {
 import formatAmount from '../lib/formatAmount';
 import { months } from '../lib/months';
 
-export default class InputChange extends Component {
+export default class AddPaymentScreen extends Component {
   state = {
     name: '',
     collector: '',

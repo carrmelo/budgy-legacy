@@ -3,7 +3,7 @@ import { Alert, StyleSheet, Text, View, ScrollView } from 'react-native';
 import ModalPayment from '../components/ModalPayment';
 import formatAmount from '../lib/formatAmount';
 
-export default class TableList extends Component {
+export default class ListPaymentsScreen extends Component {
   state = {
     payments: [],
     total: 0,

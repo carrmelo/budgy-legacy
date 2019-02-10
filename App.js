@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import TableList from './screen/TableList';
+import ListPaymentsScreen from './screen/ListPaymentsScreen';
 import AppHeader from './navigation/AppHeader';
 import AppNavigator from './navigation/AppNavigator';
-import InputChange from './screen/InputChange';
+import AddPaymentScreen from './screen/AddPaymentScreen';
 
 export default class App extends Component {
   render() {
-    return (
-      <View style={styles.container}>
-        <AppHeader />
-        <TableList />
-        <InputChange />
-        {/* <AppNavigator /> */}
-      </View>
-    );
+    return <AppNavigator />;
   }
 }
 
@@ -26,3 +19,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 });
+
+// {/* <View style={styles.container}> */}
+//   <AppHeader />
+//   <ListPaymentsScreen />
+//   <AddPaymentScreen />
+// {/* </View> */}
