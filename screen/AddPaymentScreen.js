@@ -11,8 +11,8 @@ import {
   ScrollView,
   TouchableHighlight,
 } from 'react-native';
-import formatAmount from '../lib/formatAmount';
 import { months } from '../lib/months';
+import formatNumberInput from '../lib/formatNumberInput';
 
 export default class AddPaymentScreen extends Component {
   state = {
@@ -100,7 +100,9 @@ export default class AddPaymentScreen extends Component {
             style={{ height: 40, width: 100, textAlign: 'center' }}
             keyboardType="numeric"
             returnKeyType="done"
-            value={this.state.amount ? formatAmount(this.state.amount) : ''}
+            value={
+              this.state.amount ? formatNumberInput(this.state.amount) : ''
+            }
             placeholder="amount"
             onChangeText={text => this.handleChange(text, 'amount')}
           />
