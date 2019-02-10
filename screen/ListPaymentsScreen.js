@@ -13,9 +13,16 @@ import formatAmount from '../lib/formatAmount';
 import LogoBudgy from '../navigation/LogoBudgy';
 
 export default class ListPaymentsScreen extends Component {
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     headerTitle: <LogoBudgy />,
-  };
+    headerRight: (
+      <Button
+        onPress={() => navigation.navigate('Add')}
+        color="#fff"
+        title="+     "
+      />
+    ),
+  });
 
   state = {
     payments: [],
@@ -45,7 +52,7 @@ export default class ListPaymentsScreen extends Component {
     const { payments } = this.state;
     console.log('In', !payments.length === false);
     return (
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <ScrollView style={styles.content} maximumZoomScale="10">
           {payments.map(payment => (
@@ -57,12 +64,7 @@ export default class ListPaymentsScreen extends Component {
           ))}
         </ScrollView>
         <Text style={{ flex: 1 }}>Total {this.calculateTotal(payments)}</Text>
-        <Button
-          onPress={() => this.props.navigation.navigate('Add')}
-          color="#40b34f"
-          title="Add"
-        />
-      </ScrollView>
+      </View>
     );
   }
 }
@@ -73,9 +75,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     textAlign: 'center',
   },
-  content: {
-    flex: 10,
-  },
+  content: {},
   payment: {
     flexDirection: 'row',
   },

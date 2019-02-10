@@ -100,16 +100,19 @@ export default class AddPaymentScreen extends Component {
             placeholder="collector"
             onChangeText={text => this.handleChange(text, 'collector')}
           />
-          <TextInput
-            style={{ height: 40, width: 100, textAlign: 'center' }}
-            keyboardType="numeric"
-            returnKeyType="done"
-            value={
-              this.state.amount ? formatNumberInput(this.state.amount) : ''
-            }
-            placeholder="amount"
-            onChangeText={text => this.handleChange(text, 'amount')}
-          />
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <TextInput
+              style={{ height: 40, width: 100, textAlign: 'center' }}
+              keyboardType="numeric"
+              returnKeyType="done"
+              value={
+                this.state.amount ? formatNumberInput(this.state.amount) : ''
+              }
+              placeholder="amount"
+              onChangeText={text => this.handleChange(text, 'amount')}
+            />
+            <Text>€</Text>
+          </View>
           <View
             style={{
               flexDirection: 'row',
@@ -123,7 +126,9 @@ export default class AddPaymentScreen extends Component {
                 style={{
                   width: 80,
                   height: 30,
-                  backgroundColor: '#87f294',
+                  backgroundColor: this.state.months.has(i)
+                    ? '#87f294'
+                    : '#87a094',
                   margin: 5,
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -131,7 +136,7 @@ export default class AddPaymentScreen extends Component {
                 onPress={() => this.select(i)}
                 underlayColor="#40b34f"
               >
-                <View borderStyle="solid" borderColor="red" borderWidth="5">
+                <View>
                   <Text style={{ color: '#fff' }}>
                     {month.name.substring(0, 3)}
                   </Text>
@@ -140,7 +145,17 @@ export default class AddPaymentScreen extends Component {
             ))}
           </View>
         </ScrollView>
-        <Button onPress={this.handleSubmit} color="#40b34f" title="Save" />
+        <Button
+          onPress={this.handleSubmit}
+          color="#40b34f"
+          title="Save"
+          disabled={
+            !this.state.name ||
+            !this.state.collector ||
+            !this.state.amount ||
+            this.state.months.size === 0
+          }
+        />
         <Button
           onPress={() => this.props.navigation.navigate('List')}
           color="#40b34f"
