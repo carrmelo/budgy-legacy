@@ -62,7 +62,15 @@ export default class AddPaymentScreen extends Component {
       },
     })
       .then(response => console.log(response))
-      // .then(data => this.setState({ payments: [...data] }))
+      .then(() => {
+        this.setState({
+          name: '',
+          collector: '',
+          amount: '',
+          months: new Set(),
+        });
+        this.props.navigation.goBack();
+      })
       .catch(error => console.log(error));
   };
 
@@ -75,7 +83,6 @@ export default class AddPaymentScreen extends Component {
             alignItems: 'center',
           }}
         >
-          <Button onPress={this.handleSubmit} color="#40b34f" title="Save" />
           <TextInput
             style={{ height: 40, width: 100, textAlign: 'center' }}
             value={this.state.name}
@@ -125,6 +132,12 @@ export default class AddPaymentScreen extends Component {
             ))}
           </View>
         </ScrollView>
+        <Button onPress={this.handleSubmit} color="#40b34f" title="Save" />
+        <Button
+          onPress={() => this.props.navigation.navigate('List')}
+          color="#40b34f"
+          title="List"
+        />
       </KeyboardAvoidingView>
     );
   }

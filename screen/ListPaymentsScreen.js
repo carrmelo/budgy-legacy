@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { Alert, StyleSheet, Text, View, ScrollView } from 'react-native';
+import {
+  Alert,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Button,
+} from 'react-native';
 import ModalPayment from '../components/ModalPayment';
 import formatAmount from '../lib/formatAmount';
 
@@ -43,6 +50,11 @@ export default class ListPaymentsScreen extends Component {
           ))}
         </ScrollView>
         <Text style={{ flex: 1 }}>Total {this.calculateTotal(payments)}</Text>
+        <Button
+          onPress={() => this.props.navigation.navigate('Add')}
+          color="#40b34f"
+          title="Add"
+        />
       </ScrollView>
     );
   }

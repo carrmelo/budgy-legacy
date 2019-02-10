@@ -5,12 +5,12 @@ import AddPaymentScreen from '../screen/AddPaymentScreen';
 
 const PaymentsNavigator = createStackNavigator(
   {
-    List: { screen: ListPaymentsScreen },
-    Add: { screen: AddPaymentScreen },
+    List: ListPaymentsScreen,
+    Add: AddPaymentScreen,
   },
-  { initialRouteName: 'Add' },
+  { initialRouteName: 'List' },
 );
 
-const AppNavigator = createAppContainer(PaymentsNavigator);
+const AppContainer = createAppContainer(PaymentsNavigator);
 
-export default AppNavigator;
+export default AppContainer;
