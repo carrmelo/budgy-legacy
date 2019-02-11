@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import ListPaymentsScreen from './screen/ListPaymentsScreen';
+import AppContainer from './navigation/AppNavigator';
+import AddPaymentScreen from './screen/AddPaymentScreen';
 
-export default class App extends React.Component {
+export default class App extends Component {
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>Budgy!</Text>
-      </View>
-    );
+    return <AppContainer />;
   }
 }
 
@@ -16,6 +15,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center'
-  }
+    justifyContent: 'space-between',
+  },
 });
