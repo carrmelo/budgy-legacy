@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { Modal, Text, TouchableHighlight, View, Alert } from 'react-native';
+import {
+  Modal,
+  Text,
+  TouchableHighlight,
+  View,
+  Alert,
+  Button,
+} from 'react-native';
 import formatAmount from '../lib/formatAmount';
 import { months as monthNames } from '../lib/months';
 export default class ModalPayment extends Component {
@@ -11,8 +18,22 @@ export default class ModalPayment extends Component {
     this.setState({ modalVisible: visible });
   }
 
+  deletePayment = _id => {
+    this.setState({ modalVisible: false });
+    fetch(`http://192.168.0.156:3000/payments/${_id}`, {
+      method: 'DELETE',
+      body: JSON.stringify({ _id }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(response => Alert.alert(response._bodyText))
+      .catch(error => console.log(error));
+  };
+
   render() {
-    const { name, collector, amount, months } = this.props.payment;
+    const { _id, name, collector, amount, months } = this.props.payment;
     return (
       <View style={{ marginTop: 22 }}>
         <Modal
@@ -53,6 +74,11 @@ export default class ModalPayment extends Component {
                     return `${acc} - ${monthNames[month].name.substring(0, 3)}`;
                 }, '')}
               </Text>
+              <Button
+                color="#000"
+                title="Delete"
+                onPress={() => this.deletePayment(_id)}
+              />
             </View>
           </View>
         </Modal>
