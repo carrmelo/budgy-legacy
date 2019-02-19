@@ -10,13 +10,18 @@ It is an app to keep your budgets organised. It will have 2 features:
 
 2. **Event Budget**: A comparison between products on different stores, so you can research and then organise according to your priorities (price and/or location).
 
+To use this app you'll need this [basic server](https://github.com/carrmelo/budgy-server)
+
 ## Latest updates:
 
 React-Redux connection
+React Navigation
+Modal for each payment
+Complete basic CRUD functionality: Read, Create, Delete
 
 ## Next steps:
 
-- Complete Basic funcionality: Month view
-- Complete Basic CRUD functionality: Edit
+- Complete basic funcionality: Month view
+- Complete basic CRUD functionality: Update
 - Style
 - Refactor
