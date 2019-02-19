@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   Alert,
   StyleSheet,
@@ -12,7 +13,7 @@ import ModalPayment from '../components/ModalPayment';
 import formatAmount from '../lib/formatAmount';
 import LogoBudgy from '../navigation/LogoBudgy';
 
-export default class ListPaymentsScreen extends Component {
+class ListPaymentsScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
     headerTitle: <LogoBudgy />,
     headerRight: (
@@ -55,7 +56,7 @@ export default class ListPaymentsScreen extends Component {
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <ScrollView style={styles.content} maximumZoomScale="10">
-          {payments.map(payment => (
+          {this.props.payments.payments.map(payment => (
             <ModalPayment
               style={styles.payment}
               key={payment._id}
@@ -80,3 +81,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
 });
+
+const mapStateToProps = ({ payments }) => ({
+  payments,
+});
+
+export default connect(mapStateToProps)(ListPaymentsScreen);
