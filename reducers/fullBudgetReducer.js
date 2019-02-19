@@ -21,5 +21,5 @@ const paymentsReducer = (state = initialState, action) => {
 };
 
 export default combineReducers({
-  payments: paymentsReducer,
+  fullBudget: paymentsReducer,
 });

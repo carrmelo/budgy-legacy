@@ -28,7 +28,6 @@ class ListPaymentsScreen extends Component {
   });
 
   state = {
-    payments: [],
     total: 0,
     remainingDays: 0,
     perDay: 0,
@@ -52,13 +51,13 @@ class ListPaymentsScreen extends Component {
   }
 
   render() {
-    const { payments } = this.state;
+    const { payments } = this.props.fullBudget;
     console.log('In', !payments.length === false);
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />
         <ScrollView style={styles.content} maximumZoomScale="10">
-          {this.props.payments.payments.map(payment => (
+          {this.props.fullBudget.payments.map(payment => (
             <ModalPayment
               style={styles.payment}
               key={payment._id}
@@ -84,8 +83,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = ({ payments }) => ({
-  payments,
+const mapStateToProps = ({ fullBudget }) => ({
+  fullBudget,
 });
 
 const mapDispatchToProps = dispatch =>
