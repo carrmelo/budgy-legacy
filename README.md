@@ -10,11 +10,13 @@ It is an app to keep your budgets organised. It will have 2 features:
 
 2. **Event Budget**: A comparison between products on different stores, so you can research and then organise according to your priorities (price and/or location).
 
-##Latest updates:
+## Latest updates:
+
 React-Redux connection
 
-##Next steps:
-Complete Basic funcionality: Month view
-Complete Basic CRUD functionality: Edit
-Style
-Refactor
+## Next steps:
+
+- Complete Basic funcionality: Month view
+- Complete Basic CRUD functionality: Edit
+- Style
+- Refactor
