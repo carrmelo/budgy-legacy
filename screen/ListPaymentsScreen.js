@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getPayments } from '../actions/fullBudgetActions';
 import {
   Alert,
   StyleSheet,
@@ -35,7 +37,7 @@ class ListPaymentsScreen extends Component {
   componentDidMount() {
     fetch('http://192.168.0.156:3000/payments')
       .then(response => response.json())
-      .then(data => this.setState({ payments: [...data] }))
+      .then(data => this.props.getPayments(data))
       .catch(error => console.log(error));
   }
 
@@ -86,4 +88,10 @@ const mapStateToProps = ({ payments }) => ({
   payments,
 });
 
-export default connect(mapStateToProps)(ListPaymentsScreen);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ getPayments }, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ListPaymentsScreen);

@@ -1,4 +1,4 @@
-import { conbimeReducers, combineReducers } from 'redux';
+import { combineReducers } from 'redux';
 
 const initialState = {
   payments: [],
@@ -9,7 +9,12 @@ const initialState = {
 };
 
 const paymentsReducer = (state = initialState, action) => {
+  console.log('HEEEEYYYY');
+  console.log(state, action);
+
   switch (action.type) {
+    case 'GET_PAYMENTS':
+      return { ...state, payments: [...action.payload] };
     default:
       return state;
   }
