@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addPayment } from '../actions/fullBudgetActions';
 import {
   Alert,
   StyleSheet,
@@ -14,7 +17,7 @@ import {
 import { months as monthNames } from '../lib/months';
 import formatNumberInput from '../lib/formatNumberInput';
 
-export default class AddPaymentScreen extends Component {
+class AddPaymentScreen extends Component {
   static navigationOptions = {
     title: 'New Payment',
   };
@@ -77,8 +80,9 @@ export default class AddPaymentScreen extends Component {
         'Content-Type': 'application/json',
       },
     })
-      .then(response => Alert.alert(response._bodyText))
-      .then(() => {
+      .then(response => response.json())
+      .then(data => {
+        this.props.addPayment(data);
         this.setState({
           name: '',
           collector: '',
@@ -202,3 +206,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
+
+mapDispatchToPros = dispatch => bindActionCreators({ addPayment }, dispatch);
+
+export default connect(
+  null,
+  mapDispatchToPros,
+)(AddPaymentScreen);

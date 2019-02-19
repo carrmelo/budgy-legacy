@@ -40,10 +40,6 @@ class ListPaymentsScreen extends Component {
       .catch(error => console.log(error));
   }
 
-  // componentDidUpdate() {
-  //   console.log('hola', this.state);
-  // }
-
   calculateTotal(payments) {
     return formatAmount(
       payments.reduce((acc, payment) => payment.amount + acc, 0),
@@ -52,7 +48,6 @@ class ListPaymentsScreen extends Component {
 
   render() {
     const { payments } = this.props.fullBudget;
-    console.log('In', !payments.length === false);
     return (
       <View style={styles.container}>
         <StatusBar barStyle="light-content" />

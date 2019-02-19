@@ -9,12 +9,13 @@ const initialState = {
 };
 
 const paymentsReducer = (state = initialState, action) => {
-  console.log('HEEEEYYYY');
-  console.log(state, action);
+  console.log(state.payments, action.payload);
 
   switch (action.type) {
     case 'GET_PAYMENTS':
       return { ...state, payments: [...action.payload] };
+    case 'ADD_PAYMENT':
+      return { ...state, payments: [...state.payments, action.payload] };
     default:
       return state;
   }
