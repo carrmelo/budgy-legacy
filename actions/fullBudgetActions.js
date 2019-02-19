@@ -7,3 +7,8 @@ export const addPayment = payload => ({
   type: 'ADD_PAYMENT',
   payload,
 });
+
+export const deletePayment = id => ({
+  type: 'DELETE_PAYMENT',
+  id,
+});

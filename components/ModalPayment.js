@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { deletePayment } from '../actions/fullBudgetActions';
 import {
   Modal,
   Text,
@@ -9,7 +12,8 @@ import {
 } from 'react-native';
 import formatAmount from '../lib/formatAmount';
 import { months as monthNames } from '../lib/months';
-export default class ModalPayment extends Component {
+
+class ModalPayment extends Component {
   state = {
     modalVisible: false,
   };
@@ -29,6 +33,7 @@ export default class ModalPayment extends Component {
       },
     })
       .then(response => Alert.alert(response._bodyText))
+      .then(this.props.deletePayment(_id))
       .catch(error => console.log(error));
   };
 
@@ -97,3 +102,10 @@ export default class ModalPayment extends Component {
     );
   }
 }
+
+mapDispatchToPros = dispatch => bindActionCreators({ deletePayment }, dispatch);
+
+export default connect(
+  null,
+  mapDispatchToPros,
+)(ModalPayment);

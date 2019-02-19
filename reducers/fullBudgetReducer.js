@@ -16,6 +16,11 @@ const paymentsReducer = (state = initialState, action) => {
       return { ...state, payments: [...action.payload] };
     case 'ADD_PAYMENT':
       return { ...state, payments: [...state.payments, action.payload] };
+    case 'DELETE_PAYMENT':
+      return {
+        ...state,
+        payments: state.payments.filter(payment => payment._id !== action.id),
+      };
     default:
       return state;
   }
