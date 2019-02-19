@@ -1,5 +1,7 @@
 # **Budgy!\$**
 
+### About Budgy
+
 Budgy is a personal CRUD excersise, to build an interface on react-native for the first time.
 
 It is an app to keep your budgets organised. It will have 2 features:
@@ -8,4 +10,11 @@ It is an app to keep your budgets organised. It will have 2 features:
 
 2. **Event Budget**: A comparison between products on different stores, so you can research and then organise according to your priorities (price and/or location).
 
-The app is on it's very early stages.
+##Latest updates:
+React-Redux connection
+
+##Next steps:
+Complete Basic funcionality: Month view
+Complete Basic CRUD functionality: Edit
+Style
+Refactor
